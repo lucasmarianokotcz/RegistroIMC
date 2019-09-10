@@ -1,0 +1,141 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.form {
+    border: 1px solid #333;
+    border-radius: 25px;
+    max-width: 320px;
+    margin: 0 auto 100px;
+    margin-top: 50px;
+    padding: 45px;
+    text-align: center;
+}
+
+.input-login {
+    border: 1px solid gray;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+.btn-login {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #487eb0;
+    border-color: #487eb0;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+    .btn-login:hover {
+        background-color: #0097e6;
+        border-color: #0097e6;
+    }
+
+.btn-cadastro {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #009432;
+    border-color: #009432;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+    .btn-cadastro:hover {
+        background-color: darkgreen;
+        border-color: darkgreen;
+    }
+
+h2 {
+    text-align: center;
+}
+
+.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+    a #link-login {
+        color: white;
+    }
+
+    a #link-cadastro {
+        color: white;
+    }
+
+#link-login {
+    border: 2px solid #5352ed;
+    padding: 10px;
+    background-color: #54a0ff;
+    font-size: 24px;
+    width: 180px;
+    line-height: 24px;
+    text-align: center;
+}
+
+    #link-login:hover {
+        color: #54a0ff;
+        border: 2px solid #54a0ff;
+        background-color: white;
+    }
+
+#link-cadastro {
+    border: 2px solid darkgreen;
+    padding: 10px;
+    background-color: green;
+    font-size: 24px;
+    width: 180px;
+    line-height: 24px;
+    text-align: center;
+}
+
+    #link-cadastro:hover {
+        color: green;
+        border: 2px solid green;
+        background-color: white;
+    }
+
+.links {
+    display: inline-block;
+    margin-top: 30px;
+}
+
+#links-home {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#link-cadastrar {
+    margin-top: 30px;
+    font-size: 14px;
+}
