@@ -36,8 +36,8 @@ namespace BUSINESS
 
                 // Query que será passada ao banco.
                 string query = "SELECT * FROM TB_Usuario WHERE " +
-                    "TB_Usuario.Email = @Email AND " +
-                    "TB_Usuario.Senha = @Senha";
+                    "Email = @Email AND " +
+                    "Senha = @Senha";
 
                 // Retorna o datatable com os dados do jogador.
                 return acesso.ExecutarConsulta(CommandType.Text, query);
@@ -62,10 +62,32 @@ namespace BUSINESS
                 acesso.AdicionarParametros("@Senha", usuarioCadastro.Senha);
 
                 // Query que será passada ao banco.
-                string query = "INSERT INTO TB_Usuario VALUES(" +
-                    "@Nome, @Email, @Senha)";
+                string query = "INSERT INTO TB_Usuario VALUES " +
+                    "(@Nome, @Email, @Senha)";
 
                 acesso.ExecutarPersistencia(CommandType.Text, query, false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Buscar se e-mail já existe
+        public DataTable BuscarEmail(string email)
+        {
+            try
+            {
+                acesso.LimparParametros();
+                acesso.AdicionarParametros("@Email", email);
+
+                // Query que será passada ao banco.
+                string query = "SELECT Email FROM TB_Usuario WHERE " +
+                    "Email = @Email";
+
+                return acesso.ExecutarConsulta(CommandType.Text, query);
             }
             catch (Exception ex)
             {

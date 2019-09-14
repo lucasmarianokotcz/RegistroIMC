@@ -28,17 +28,20 @@ namespace RegistroIMC.Controllers
                 // Faz o hash de senha.
                 usuario.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuario.SenhaHash));
 
+                // Procura pelo usuário digitado. Se encontrar, loga-o.
                 if (usuarioBusiness.BuscarDadosUsuario(usuario).Rows.Count > 0)
                 {
                     return RedirectToAction("Index");
                 }
+                // Caso não exista um usuário conforme digitado.
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Usuario não encontrado.");
-                    return View(usuario);
+                    ModelState.Clear();
+                    ModelState.AddModelError(string.Empty, "Usuário ou senha inválidos.");
+                    return View();
                 }
-
             }
+            // ModelState não está correto.
             ModelState.AddModelError(string.Empty, "Preencha os campos corretamente.");
             return View(usuario);
         }
@@ -56,13 +59,22 @@ namespace RegistroIMC.Controllers
             {
                 UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
+                // Verifica se já existe um usuário com o e-mail informado.
+                if (usuarioBusiness.BuscarEmail(usuarioCadastro.Email).Rows.Count > 0)
+                {
+                    ModelState.Clear();
+                    ModelState.AddModelError(string.Empty, "E-mail informado já existe.");
+                    return View();
+                }
+
                 // Faz o hash de senha.
                 usuarioCadastro.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuarioCadastro.SenhaHash));
 
+                // Cadastra o usuário digitado.
                 usuarioBusiness.CadastrarUsuario(usuarioCadastro);
-
                 return RedirectToAction("Index");
             }
+            // ModelState inválido.
             ModelState.AddModelError(string.Empty, "Preencha os campos corretamente.");
             return View(usuarioCadastro);
         }

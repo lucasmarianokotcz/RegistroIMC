@@ -103,9 +103,7 @@ a {
 }
 
     #link-login:hover {
-        color: #54a0ff;
-        border: 2px solid #54a0ff;
-        background-color: white;
+        opacity: 0.8;
     }
 
 #link-cadastro {
@@ -119,9 +117,7 @@ a {
 }
 
     #link-cadastro:hover {
-        color: green;
-        border: 2px solid green;
-        background-color: white;
+        opacity: 0.6;
     }
 
 .links {
