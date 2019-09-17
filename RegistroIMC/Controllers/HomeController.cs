@@ -24,8 +24,6 @@ namespace RegistroIMC.Controllers
             if (ModelState.IsValid)
             {
                 UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-
-                // Faz o hash de senha.
                 usuario.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuario.SenhaHash));
 
                 // Procura pelo usuário digitado. Se encontrar, loga-o.
@@ -33,7 +31,6 @@ namespace RegistroIMC.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                // Caso não exista um usuário conforme digitado.
                 else
                 {
                     ModelState.Clear();
@@ -41,7 +38,6 @@ namespace RegistroIMC.Controllers
                     return View();
                 }
             }
-            // ModelState não está correto.
             ModelState.AddModelError(string.Empty, "Preencha os campos corretamente.");
             return View(usuario);
         }
@@ -60,21 +56,16 @@ namespace RegistroIMC.Controllers
                 UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
                 // Verifica se já existe um usuário com o e-mail informado.
-                if (usuarioBusiness.BuscarEmail(usuarioCadastro.Email).Rows.Count > 0)
+                if (usuarioBusiness.BuscarSeEmailJaExiste(usuarioCadastro.Email).Rows.Count > 0)
                 {
                     ModelState.Clear();
                     ModelState.AddModelError(string.Empty, "E-mail informado já existe.");
                     return View();
                 }
-
-                // Faz o hash de senha.
                 usuarioCadastro.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuarioCadastro.SenhaHash));
-
-                // Cadastra o usuário digitado.
                 usuarioBusiness.CadastrarUsuario(usuarioCadastro);
                 return RedirectToAction("Index");
             }
-            // ModelState inválido.
             ModelState.AddModelError(string.Empty, "Preencha os campos corretamente.");
             return View(usuarioCadastro);
         }

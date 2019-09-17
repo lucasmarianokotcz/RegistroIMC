@@ -76,7 +76,7 @@ namespace BUSINESS
         #endregion
 
         #region Buscar se e-mail já existe
-        public DataTable BuscarEmail(string email)
+        public DataTable BuscarSeEmailJaExiste(string email)
         {
             try
             {

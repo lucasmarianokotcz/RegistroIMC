@@ -1,6 +1,4 @@
 ﻿using System;
-
-// Using ADO .NET.
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,7 +6,6 @@ namespace DADOS
 {
     public class AcessoDados
     {
-        // Criar a conexão com o banco de dados.
         public SqlConnection CriarConexao()
         {
             return new SqlConnection(connectionString:
@@ -18,15 +15,13 @@ namespace DADOS
         }
 
         // Parâmetros que irão para o banco.
-        SqlParameterCollection sqlParamameterCollection = new SqlCommand().Parameters;
+        readonly SqlParameterCollection sqlParamameterCollection = new SqlCommand().Parameters;
 
-        // Limpar os parâmetros.
         public void LimparParametros()
         {
             sqlParamameterCollection.Clear();
         }
 
-        // Adicionar parâmetros.
         public void AdicionarParametros(string nome, object valor)
         {
             sqlParamameterCollection.Add(new SqlParameter(nome, valor));
@@ -36,21 +31,13 @@ namespace DADOS
         {
             try
             {
-                // Criar a conexão com o banco.
                 SqlConnection sqlConnection = CriarConexao();
-
-                // Abrir a conexão.
                 sqlConnection.Open();
-
-                // Criar o comando que vai até o bd.
                 SqlCommand sqlCommand = sqlConnection.CreateCommand();
-
-                // Adicionar os dados dentro do comando.
                 sqlCommand.CommandType = cmdoType;
                 sqlCommand.CommandText = textoSql;
                 sqlCommand.CommandTimeout = 3600;
 
-                // Varre os parâmetros e coloca nome e valor do parâmetro dentro da "caixa" de parâmetros.
                 foreach (SqlParameter sqlParameter in sqlParamameterCollection)
                 {
                     sqlCommand.Parameters.Add(new SqlParameter(sqlParameter.ParameterName, sqlParameter.Value));
@@ -70,13 +57,8 @@ namespace DADOS
         {
             try
             {
-                // Criar a conexão.
                 SqlConnection sqlConnection = CriarConexao();
-
-                // Abrir a conexão.
                 sqlConnection.Open();
-
-                // Criar o comando que vai levar as informações até o BD.
                 SqlCommand sqlCommand = sqlConnection.CreateCommand();
                 sqlCommand.CommandType = cmdoType;
                 sqlCommand.CommandText = textoSql;
@@ -84,7 +66,7 @@ namespace DADOS
 
                 foreach (SqlParameter sqlParameter in sqlParamameterCollection)
                 {
-                    sqlCommand.Parameters.Add(new SqlParameter(sqlParameter.ParameterName, sqlParameter.Value));                    
+                    sqlCommand.Parameters.Add(new SqlParameter(sqlParameter.ParameterName, sqlParameter.Value));
                 }
 
                 // Criar um adaptador de dados SQL.
