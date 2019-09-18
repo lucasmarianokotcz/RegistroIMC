@@ -12,13 +12,13 @@ namespace BUSINESS
     {
         AcessoDados acesso = new AcessoDados();
 
-        #region Fazer hash da senha do usuário
+        #region Hash da senha do usuário
         /// <summary>
-        /// Método que faz o hash da senha do usuário.
+        /// Faz o hash da senha do usuário.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public string FazerHash(string input)
+        public string FazerHashDaSenha(string input)
         {
             byte[] hash = new SHA256Managed().ComputeHash(Encoding.UTF8.GetBytes(input));
             return string.Concat(hash.Select(b => b.ToString("x2")));

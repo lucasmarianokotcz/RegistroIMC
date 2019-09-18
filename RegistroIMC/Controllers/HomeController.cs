@@ -10,8 +10,13 @@ namespace RegistroIMC.Controllers
 {
     public class HomeController : Controller
     {
-        // Método que autentica o usuário logado.
-        private void Autenticacao(string id, string nome)
+        #region Autenticação do usuário
+        /// <summary>
+        /// Autentica o usuário logado.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nome"></param>
+        private void AutenticarUsuario(string id, string nome)
         {
             // Identidade do usuário
             var identity = new ClaimsIdentity(new[]
@@ -28,8 +33,11 @@ namespace RegistroIMC.Controllers
             // SignIn (autenticação de login)
             authManager.SignIn(identity);
         }
-
-        // Método que pega o RedirectUrl de acordo com sucesso ou falha do login do usuário.
+        /// <summary>
+        /// Pega o RedirectUrl de acordo com sucesso ou falha do login do usuário.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         private string GetRedirectUrl(string returnUrl)
         {
             // Caso o usuário tenha feito login
@@ -41,6 +49,7 @@ namespace RegistroIMC.Controllers
             // Caso o usuário tenha um login inválido (volta para a mesma URL atual (action Login))
             return returnUrl;
         }
+        #endregion
 
         public ActionResult Index()
         {
@@ -77,7 +86,7 @@ namespace RegistroIMC.Controllers
             if (ModelState.IsValid)
             {
                 UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-                usuario.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuario.SenhaHash));
+                usuario.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHashDaSenha(usuario.SenhaHash));
 
                 // Procura pelo usuário digitado. Se encontrar, loga-o.
                 System.Data.DataTable dataTable = usuarioBusiness.BuscarDadosUsuario(usuario);
@@ -86,7 +95,7 @@ namespace RegistroIMC.Controllers
                     // Autentica o usuário.
                     string id = dataTable.Rows[0][0].ToString();
                     string nome = dataTable.Rows[0][1].ToString();
-                    Autenticacao(id, nome);
+                    AutenticarUsuario(id, nome);
 
                     // Redireciona o usuário para a action Index
                     return Redirect(GetRedirectUrl(usuario.ReturnUrl));
@@ -122,7 +131,7 @@ namespace RegistroIMC.Controllers
                     ModelState.AddModelError(string.Empty, "E-mail informado já existe.");
                     return View();
                 }
-                usuarioCadastro.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHash(usuarioCadastro.SenhaHash));
+                usuarioCadastro.Senha = Encoding.ASCII.GetBytes(usuarioBusiness.FazerHashDaSenha(usuarioCadastro.SenhaHash));
                 usuarioBusiness.CadastrarUsuario(usuarioCadastro);
                 return RedirectToAction("Index");
             }
