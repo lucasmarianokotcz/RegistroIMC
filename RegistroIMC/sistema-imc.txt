@@ -7,3 +7,8 @@ www.registroimc.com.br
 - cadastro de usuário
 - usuário vai poder registrar seu imc
 - usuário vai poder ver imc registrado (dia, hora etc), com base nos registros inseridos
+
+///TODO
+=> Autenticação -> DONE
+=> Controller Registro
+=> Views Registro

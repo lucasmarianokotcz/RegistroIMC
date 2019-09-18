@@ -25,7 +25,7 @@ namespace BUSINESS
         }
         #endregion
 
-        #region Buscar dados do usuário
+        #region Buscar dados do usuário (BD)
         public DataTable BuscarDadosUsuario(Usuario usuario)
         {
             try
@@ -51,7 +51,7 @@ namespace BUSINESS
 
         #endregion
 
-        #region Cadastrar usuário
+        #region Cadastrar usuário (BD)
         public void CadastrarUsuario(UsuarioCadastro usuarioCadastro)
         {
             try
@@ -75,7 +75,7 @@ namespace BUSINESS
         }
         #endregion
 
-        #region Buscar se e-mail já existe
+        #region Buscar se e-mail já existe (BD)
         public DataTable BuscarSeEmailJaExiste(string email)
         {
             try

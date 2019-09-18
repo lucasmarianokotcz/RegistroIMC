@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace MODEL
 {
@@ -12,5 +13,7 @@ namespace MODEL
         [Required(ErrorMessage = "O campo Senha é obrigatório.")]
         [StringLength(20, ErrorMessage = "Máximo de {1} caracteres.")]
         public string SenhaHash { get; set; }
+        [HiddenInput]
+        public string ReturnUrl { get; set; }
     }
 }
