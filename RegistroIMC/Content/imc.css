@@ -1,0 +1,89 @@
+﻿.imc {
+    font-weight: bold;
+    color: #212931;
+}
+
+#abaixo {
+    background-color: aqua;
+}
+
+#normal {
+    background-color: lime;
+}
+
+#sobrepeso {
+    background-color: orange;
+}
+
+#obesidade-1 {
+    background-color: darkorange;
+}
+
+#obesidade-2 {
+    background-color: orangered;
+}
+
+#obesidade-3 {
+    background-color: red;
+}
+
+.novo-registro {
+    color: white;
+    background-color: #2e86de;
+    font-size: 17px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+    .novo-registro a {
+        color: white;
+    }
+
+    .novo-registro i {
+        margin-right: 5px;
+    }
+
+    .novo-registro:hover {
+        opacity: 0.8;
+    }
+
+#novo {
+    padding: 11px;
+}
+
+.erros {
+    padding-top: 10px;
+    display: grid;
+}
+
+.botoes-novo {
+    display: flex;
+}
+
+.btn-salvar {
+    font-size: 20px;
+    padding: 0 30px;
+    margin-right: 16px;
+    transition: 0.6s;
+}
+
+    .btn-salvar:hover {
+        border-radius: 8px;
+    }
+
+.btn-cancelar {
+    padding: 10px;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    transition: 0.6s;
+}
+
+    .btn-cancelar:hover {
+        border-radius: 8px;
+    }
+
+@media only screen and (min-width: 600px) {
+    .botoes-novo {
+        margin-left: -20px;
+    }
+}

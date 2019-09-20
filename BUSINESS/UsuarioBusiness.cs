@@ -10,7 +10,7 @@ namespace BUSINESS
 {
     public class UsuarioBusiness
     {
-        AcessoDados acesso = new AcessoDados();
+        private readonly AcessoDados acesso = new AcessoDados();
 
         #region Hash da senha do usuário
         /// <summary>

@@ -4,13 +4,23 @@
 
 <h2>Página inicial</h2>
 
-<div id="links-home">
-    <div class="links">
-        <a href="@Url.Action("Login", "Home")"><div id="link-login">Login</div></a>
+@if (!(User.Identity.IsAuthenticated))
+{
+    <div id="links-home">
+        <div class="links">
+            <a href="@Url.Action("Login", "Home")"><div id="link-login">Login</div></a>
+        </div>
+        <div class="links">
+            <a href="@Url.Action("Cadastro", "Home")"><div id="link-cadastro">Cadastro</div></a>
+        </div>
     </div>
-    <div class="links">
-        <a href="@Url.Action("Cadastro", "Home")"><div id="link-cadastro">Cadastro</div></a>
+}
+else
+{
+    <div id="div-sair">
+        <span id="boas-vindas">Olá, <b>@User.Identity.Name</b></span> <a href="@Url.Action("Login", "Home")"><div id="link-sair">Sair</div></a>
     </div>
-</div>
-
-Olá, <b>@User.Identity.Name</b>
+    <div id="link-imc">
+        <a href="@Url.Action("Index", "Registro")"><div id="link-registros">Meus registros de IMC</div></a>
+    </div>
+}

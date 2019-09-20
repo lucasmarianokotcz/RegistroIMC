@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace RegistroIMC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         #region Autenticação do usuário
@@ -16,13 +17,14 @@ namespace RegistroIMC.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="nome"></param>
-        private void AutenticarUsuario(string id, string nome)
+        private void AutenticarUsuario(Usuario usuario, string nome)
         {
             // Identidade do usuário
             var identity = new ClaimsIdentity(new[]
             {
-                    new Claim(ClaimTypes.Sid, id),
+                    new Claim(ClaimTypes.Sid, usuario.CodUsuario.ToString()),
                     new Claim(ClaimTypes.Name, nome),
+                    new Claim(ClaimTypes.Email, usuario.Email),
                 },
             "ApplicationCookie");
 
@@ -33,6 +35,7 @@ namespace RegistroIMC.Controllers
             // SignIn (autenticação de login)
             authManager.SignIn(identity);
         }
+
         /// <summary>
         /// Pega o RedirectUrl de acordo com sucesso ou falha do login do usuário.
         /// </summary>
@@ -56,7 +59,6 @@ namespace RegistroIMC.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             // Verifica se o usuário está autenticado. Se estiver, desloga.
@@ -80,7 +82,6 @@ namespace RegistroIMC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public ActionResult Login(Usuario usuario)
         {
             if (ModelState.IsValid)
@@ -93,9 +94,10 @@ namespace RegistroIMC.Controllers
                 if (dataTable.Rows.Count > 0)
                 {
                     // Autentica o usuário.
-                    string id = dataTable.Rows[0][0].ToString();
+                    usuario.CodUsuario = Convert.ToInt32(dataTable.Rows[0][0]);
                     string nome = dataTable.Rows[0][1].ToString();
-                    AutenticarUsuario(id, nome);
+                    usuario.Email = dataTable.Rows[0][2].ToString();
+                    AutenticarUsuario(usuario, nome);
 
                     // Redireciona o usuário para a action Index
                     return Redirect(GetRedirectUrl(usuario.ReturnUrl));

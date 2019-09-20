@@ -1,0 +1,57 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "Registros";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+
+<h2>Registros de IMC</h2>
+<br />
+<div class="novo-registro">
+    <a href="@Url.Action("Novo", "Registro")"><div id="novo"><i class="fas fa-plus"></i> Novo registro</div></a>
+</div>
+
+<table class="table table-bordered">
+    <tr style="text-align:center" class="thead-light">
+        <th>Data</th>
+        <th>Peso</th>
+        <th>Altura</th>
+        <th>IMC</th>
+        <th>Status</th>
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr style="text-align:center">
+            <td>@Convert.ToDateTime(@Model.Rows[i]["DataRegistro"]).ToShortDateString()</td>
+            <td>@Model.Rows[i]["Peso"] kg</td>
+            <td>@Model.Rows[i]["Altura"] cm</td>
+            @{ double imc = Math.Round((Convert.ToDouble(@Model.Rows[i]["Peso"])) / (Convert.ToDouble(@Model.Rows[i]["Altura"]) * Convert.ToDouble(@Model.Rows[i]["Altura"])) * 10000, 1); }
+            <td>@imc</td>
+            @if (imc < 18.5)
+            {
+                <td id="abaixo" class="imc">Abaixo do peso</td>
+            }
+            else if (imc >= 18.5 && imc <= 24.9)
+            {
+                <td id="normal" class="imc">Peso normal</td>
+            }
+            else if (imc >= 25 && imc <= 29.9)
+            {
+                <td id="sobrepeso" class="imc">Sobrepeso</td>
+            }
+            else if (imc >= 30 && imc <= 34.9)
+            {
+                <td id="obesidade-1" class="imc">Obesidade grau 1</td>
+            }
+            else if (imc >= 35 && imc <= 39.9)
+            {
+                <td id="obesidade-2" class="imc">Obesidade grau 2</td>
+            }
+            else
+            {
+                <td id="obesidade-3" class="imc">Obesidade grau 3</td>
+            }
+        </tr>
+    }
+</table>
