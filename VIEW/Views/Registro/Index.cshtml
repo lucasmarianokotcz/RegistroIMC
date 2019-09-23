@@ -8,8 +8,22 @@
 
 <h2>Registros de IMC</h2>
 <br />
-<div class="novo-registro">
-    <a href="@Url.Action("Novo", "Registro")"><div id="novo"><i class="fas fa-plus"></i> Novo registro</div></a>
+<div class="container">
+    <div class="row">
+        <div class="novo-registro">
+            <a href="@Url.Action("Novo", "Registro")"><div id="novo"><i class="fas fa-plus"></i> Novo registro</div></a>
+        </div>
+        <span style="margin: auto 20px auto 20px; font-weight: bold">Ordenar por:</span>
+        <div style="margin: auto 0">
+            <form method="get">
+                <select class="custom-select" onchange="this.form.submit()" name="ordem">
+                    <option value="DataRegistro" @ViewBag.Data>Data</option>
+                    <option @ViewBag.Peso>Peso</option>
+                    <option @ViewBag.Altura>Altura</option>
+                </select>
+            </form>
+        </div>
+    </div>
 </div>
 
 <table class="table table-bordered">

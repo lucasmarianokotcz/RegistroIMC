@@ -1,12 +1,7 @@
-﻿using DADOS;
+﻿using DATAACCESS;
 using MODEL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BUSINESS
 {
@@ -15,7 +10,7 @@ namespace BUSINESS
         private readonly AcessoDados acesso = new AcessoDados();        
 
         #region Buscar registros de um usuário (BD)
-        public DataTable BuscarRegistrosDeUmUsuario(int id)
+        public DataTable BuscarRegistrosDeUmUsuario(int id, string ordem)
         {
             try
             {
@@ -24,7 +19,7 @@ namespace BUSINESS
 
                 // Query que será passada ao banco.
                 string query = "SELECT Peso, Altura, DataRegistro FROM TB_Registro WHERE " +
-                    "CodUsuario = @CodUsuario ORDER BY DataRegistro";
+                    "CodUsuario = @CodUsuario ORDER BY " + ordem;
 
                 return acesso.ExecutarConsulta(CommandType.Text, query);
             }

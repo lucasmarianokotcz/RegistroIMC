@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(RegistroIMC.Startup))]
+[assembly: OwinStartup(typeof(VIEW.Startup))]
 
-namespace RegistroIMC
+namespace VIEW
 {
     public class Startup
     {

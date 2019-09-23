@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
 
-namespace RegistroIMC.Controllers
+namespace VIEW.Controllers
 {
     public class RegistroController : Controller
     {
@@ -21,7 +21,22 @@ namespace RegistroIMC.Controllers
         public ActionResult Index()
         {
             RegistroBusiness registroBusiness = new RegistroBusiness();
-            return View(registroBusiness.BuscarRegistrosDeUmUsuario(PegarIdDoUsuarioLogado()));
+            string ordem = Request.QueryString["ordem"] ?? "DataRegistro";
+            switch (ordem)
+            {
+                case "DataRegistro":
+                    ViewBag.Data = "selected";
+                    break;
+                case "Peso":
+                    ViewBag.Peso = "selected";
+                    break;
+                case "Altura":
+                    ViewBag.Altura = "selected";
+                    break;
+                default:
+                    return View(registroBusiness.BuscarRegistrosDeUmUsuario(PegarIdDoUsuarioLogado(), "DataRegistro"));
+            }
+            return View(registroBusiness.BuscarRegistrosDeUmUsuario(PegarIdDoUsuarioLogado(), ordem));
         }
 
         // GET: Registro/Novo

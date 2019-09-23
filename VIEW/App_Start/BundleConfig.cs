@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace RegistroIMC
+namespace VIEW
 {
     public class BundleConfig
     {

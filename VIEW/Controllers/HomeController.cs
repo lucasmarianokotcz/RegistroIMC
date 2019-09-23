@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RegistroIMC.Controllers
+namespace VIEW.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller
