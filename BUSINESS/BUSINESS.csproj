@@ -46,9 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DADOS\DADOS.csproj">
+    <ProjectReference Include="..\DATAACCESS\DATAACCESS.csproj">
       <Project>{16a7d24a-659c-48c3-a334-5692984c5c03}</Project>
-      <Name>DADOS</Name>
+      <Name>DATAACCESS</Name>
     </ProjectReference>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
       <Project>{1f8dd1b9-e5e1-41c5-a66c-8b5330d4d660}</Project>

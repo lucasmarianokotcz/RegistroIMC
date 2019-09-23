@@ -7,8 +7,8 @@
     <ProjectGuid>{16A7D24A-659C-48C3-A334-5692984C5C03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DADOS</RootNamespace>
-    <AssemblyName>DADOS</AssemblyName>
+    <RootNamespace>DATAACCESS</RootNamespace>
+    <AssemblyName>DATAACCESS</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
